@@ -1,5 +1,10 @@
 # Wick's Beasts and Things - Changelog
 
+## Unreleased
+
+- The food on the feed key is picked on the options page: the best food in your bags, or any food there that the pet eats. It used to need a typed command.
+- The ammo warning is a stepper on the options page, in steps of 50 shots, with 0 for off.
+
 ## 0.9.1 (2026-11-15)
 
 - Shows in the game's addon list with an icon and the two-tone Wick title, under a Wick's Mods heading.

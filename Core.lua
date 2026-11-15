@@ -185,9 +185,30 @@ function A:OnEnable()
         y = O:Heading(page, "Feeding", y - 6)
         y = O:Check(page, "Prefer the cheapest eligible food", function() return db.preferCheap == true end,
             function(v) db.preferCheap = v; ns.Pet:UpdateFeedMacro(); ns.UI:Refresh() end, y)
-        y = O:Note(page, "The feed key picks the best food in your bags that the pet will eat. Pin one with /wbt food <item link>, clear it with /wbt food clear.", y)
+        if O.Choice then
+            -- Which food the feed key reaches for: the best in the bags, or
+            -- one picked here from what the pet will eat and you carry.
+            y = O:Choice(page, "Feed with",
+                function() return db.foodItem or nil end,
+                function(v) db.foodItem = v or false; ns.Pet:UpdateFeedMacro(); ns.UI:Refresh() end, y, {
+                    options = function()
+                        local out = { { value = nil, text = "The best food in bags" } }
+                        for _, f in ipairs(ns.Pet:Foods()) do
+                            out[#out + 1] = { value = f.itemID, text = f.name or ("item " .. f.itemID) }
+                        end
+                        return out
+                    end,
+                    other = function(v) return ("item %s (not in bags)"):format(tostring(v)) end,
+                })
+            y = O:Note(page, "The feed key picks the best food in your bags that the pet will eat, or the one chosen here while you carry it. The list shows what is in your bags that this pet eats, so call the pet first.", y)
+        else
+            y = O:Note(page, "The feed key picks the best food in your bags that the pet will eat. Pin one with /wbt food <item link>, clear it with /wbt food clear.", y)
+        end
         y = O:Heading(page, "Ammo", y - 6)
-        y = O:Note(page, ("Warn below %d shots. Change it with /wbt ammo <count>."):format(db.ammoWarn or 200), y)
+        y = O:Stepper(page, "Warn below this many shots",
+            function() return db.ammoWarn or 200 end,
+            function(v) db.ammoWarn = math.max(0, math.min(5000, v)); ns.UI:Refresh() end,
+            y, { step = 50, text = function(v) return v <= 0 and "off" or tostring(v) end })
         y = O:Button(page, "Open panel", function() ns.UI:Toggle() end, y, 100)
         y = O:Button(page, "Open kit", function() addon.kit:Toggle() end, y, 100)
         if ns.beasts then y = ns.beasts:OptionRow(page, y - 6) end

@@ -81,7 +81,7 @@ local function foodLines(tt, food)
     if food then
         if tt.SetItemByID then tt:SetItemByID(food.itemID) else tt:SetHyperlink("item:" .. food.itemID) end
         tt:AddLine(" ")
-        tt:AddLine(food.pinned and "Pinned. /wbt food clear to go back to the best food in bags."
+        tt:AddLine(food.pinned and "The food you chose. Change it under Options, Wick's Mods."
             or "Best food in your bags for this pet. Click or press the Feed pet key.", 0.6, 0.6, 0.6, true)
     else
         tt:SetText("Nothing to feed", 1, 1, 1)

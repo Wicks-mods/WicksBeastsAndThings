@@ -1,12 +1,16 @@
 # Wick's Beasts and Things - Changelog
 
+## Unreleased
+
+- Shows in the game's addon list with an icon and the two-tone Wick title, under a Wick's Mods heading.
+
 ## 0.9.0
 
 One version across the suite for the Forever beta. Every addon carried a
 number of its own that said nothing about how finished it was, so they are
 aligned here and the suite goes to 1.0.0 together at launch.
 
-## Unreleased
+### Shipped in 0.9.0
 
 - Beast atlas. Reads your pet's spell book whenever one is out and files
   what it found under that pet's family, then names a family's abilities

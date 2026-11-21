@@ -1,5 +1,13 @@
 # Wick's Beasts and Things - Changelog
 
+## Unreleased
+
+### Fixed
+
+- CurseForge now installs WickCore along with this addon. No file said it
+  was needed, so the app installed the addon alone and it could not run.
+- The message shown when WickCore is missing says where to get it.
+
 ## 0.9.2 (2026-11-15)
 
 - The food on the feed key is picked on the options page: the best food in your bags, or any food there that the pet eats. It used to need a typed command.

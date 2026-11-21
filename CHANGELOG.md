@@ -1,6 +1,6 @@
 # Wick's Beasts and Things - Changelog
 
-## Unreleased
+## 0.9.3 (2026-11-21)
 
 ### Fixed
 
